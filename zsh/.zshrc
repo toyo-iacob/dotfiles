@@ -31,7 +31,7 @@ alias v='nvim'
 # ---- Fzf -----
 
 # Set up fzf key bindings and fuzzy completion
-eval "$(fzf --zsh)"
+source <(fzf --zsh)
 
 # Use fd instead of fzf
 export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
@@ -83,6 +83,17 @@ eval "$(zoxide init --cmd cd zsh)"
 
 eval $(thefuck --alias)
 eval $(thefuck --alias fk)
+
+# ---- Yazi -----
+
+function yy() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		builtin cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
+}
 
 # Created by Zap installer
 [ -f "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh" ] && source "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh"
