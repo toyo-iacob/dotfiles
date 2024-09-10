@@ -24,6 +24,10 @@ alias mod='go mod tidy && go mod download && go mod vendor'
 alias docker-update='docker image ls --format "{{.Repository}}:{{.Tag}}" | grep 410715645895.dkr.ecr.us-east-1.amazonaws.com | while read line; do docker pull $line; done'
 alias docker-stop-all='docker stop $(docker ps -a -q)'
 
+# ---- GNU GPG -----
+
+export GPG_TTY=$(tty)
+
 # ---- nvim -----
 
 alias v='nvim'
