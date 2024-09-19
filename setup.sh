@@ -56,6 +56,10 @@ brew install node
 
 brew install go
 
+brew install rust
+
+brew install protobuf
+
 stow aerospace kitty nvim starship tmux zsh -t $HOME
 
 #mac specific stuff
