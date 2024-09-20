@@ -15,6 +15,9 @@ return {
 					enable = true,
 				},
 			},
+			view = {
+				adaptive_size = true,
+			},
 			filters = {
 				git_ignored = false,
 			},
