@@ -60,6 +60,8 @@ brew install rust
 
 brew install protobuf
 
+brew install luarocks
+
 stow aerospace kitty nvim starship tmux zsh -t $HOME
 
 #mac specific stuff
