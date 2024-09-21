@@ -1,6 +1,5 @@
 return {
 	'akinsho/toggleterm.nvim',
-	version = "*",
 	config = function()
 		require("gitsigns").setup()
 
