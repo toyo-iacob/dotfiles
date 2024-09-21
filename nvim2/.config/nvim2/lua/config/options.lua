@@ -9,10 +9,15 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 vim.g.background = "light"
 
--- vim.cmd("set expandtab")
-vim.cmd("set tabstop=2")
-vim.cmd("set softtabstop=0")
-vim.cmd("set shiftwidth=2")
+-- indent
+vim.opt.tabstop = 2
+vim.opt.softtabstop = 0
+vim.opt.shiftwidth = 2
+vim.opt.smartindent = true
+
+-- search
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
 
 vim.opt.swapfile = false
 
