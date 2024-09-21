@@ -12,13 +12,13 @@ vim.keymap.set("n", "N", "Nzzzv")
 vim.keymap.set("v", "p", '"_dP')
 
 -- Copy text to " register
-vim.keymap.set("n", "<leader>y", '"+y', { desc = 'Yank into " register' })
-vim.keymap.set("v", "<leader>y", '"+y', { desc = 'Yank into " register' })
-vim.keymap.set("n", "<leader>Y", '"+Y', { desc = 'Yank into " register' })
+vim.keymap.set("n", "<leader>y", '"+y', { desc = 'Yank into "' })
+vim.keymap.set("v", "<leader>y", '"+y', { desc = 'Yank into "' })
+vim.keymap.set("n", "<leader>Y", '"+Y', { desc = 'Yank into "' })
 
 -- Delete text to " register
-vim.keymap.set("n", "<leader>d", '"_d', { desc = 'Delete into " register' })
-vim.keymap.set("v", "<leader>d", '"_d', { desc = 'Delete into " register' })
+vim.keymap.set("n", "<leader>d", '"_d', { desc = 'Delete into "' })
+vim.keymap.set("v", "<leader>d", '"_d', { desc = 'Delete into "' })
 
 -- Replace word under cursor across entire buffer
 vim.keymap.set(
@@ -33,7 +33,7 @@ vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move Block Down" })
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move Block Up" })
 
 -- Search for highlighted text in buffer
-vim.keymap.set("v", "//", 'y/<C-R>"<CR>', { desc = "Search for highlighted text" })
+vim.keymap.set("v", "//", 'y/<C-R>"<CR>', { desc = "Search for selection" })
 
 -- Close buffer
 vim.keymap.set("n", "<leader>w", ":bprevious <bar> bdelete #<CR>", { desc = "Delete buffer" })

@@ -34,49 +34,52 @@ return {
 	},
 	{
 		"neovim/nvim-lspconfig",
+		dependencies = {
+			"hrsh7th/cmp-nvim-lsp",
+		},
 		lazy = false,
 		config = function()
-			-- local capabilities = require("cmp_nvim_lsp").default_capabilities()
+			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 			local lspconfig = require("lspconfig")
 			lspconfig.bashls.setup({
-				-- capabilities = capabilities,
+				capabilities = capabilities,
 			})
 			lspconfig.dockerls.setup({
-				-- capabilities = capabilities,
+				capabilities = capabilities,
 			})
 			lspconfig.gopls.setup({
-				-- capabilities = capabilities,
+				capabilities = capabilities,
 			})
 			lspconfig.templ.setup({
-				-- capabilities = capabilities,
+				capabilities = capabilities,
 			})
 			lspconfig.helm_ls.setup({
-				-- capabilities = capabilities,
+				capabilities = capabilities,
 			})
 			lspconfig.spectral.setup({
-				-- capabilities = capabilities,
+				capabilities = capabilities,
 			})
 			lspconfig.lua_ls.setup({
-				-- capabilities = capabilities,
+				capabilities = capabilities,
 			})
 			lspconfig.grammarly.setup({
-				-- capabilities = capabilities,
+				capabilities = capabilities,
 			})
 			lspconfig.nginx_language_server.setup({
-				-- capabilities = capabilities,
+				capabilities = capabilities,
 			})
 			lspconfig.pbls.setup({
-				-- capabilities = capabilities,
+				capabilities = capabilities,
 			})
 			lspconfig.sqls.setup({
-				-- capabilities = capabilities,
+				capabilities = capabilities,
 			})
 			lspconfig.terraformls.setup({
-				-- capabilities = capabilities,
+				capabilities = capabilities,
 			})
 			lspconfig.gitlab_ci_ls.setup({
-				-- capabilities = capabilities,
+				capabilities = capabilities,
 			})
 
 			vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "Signature" })
