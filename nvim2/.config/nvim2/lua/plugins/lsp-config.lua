@@ -18,6 +18,8 @@ return {
 					"bashls",
 					"dockerls",
 					"gopls",
+					"goimports",
+					"gofumpt",
 					"templ",
 					"helm_ls",
 					"spectral",

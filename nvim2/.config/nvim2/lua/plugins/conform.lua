@@ -17,14 +17,22 @@ return {
 			templ = { "templ" },
 			terraform = { "terraform_fmt" },
 			yaml = { "yamlfmt" },
+			-- Use the "*" filetype to run formatters on all filetypes.
+			["*"] = { "codespell" },
+			-- Use the "_" filetype to run formatters on filetypes that don't
+			-- have other formatters configured.
+			["_"] = { "trim_whitespace" },
 		},
 		-- Set default options
 		default_format_opts = {
 			lsp_format = "fallback",
 		},
 		-- Set up format-on-save
-		format_on_save = { timeout_ms = 500 },
-		-- Customize formatters
+		format_on_save = {
+			-- I recommend these options. See :help conform.format for details.
+			lsp_format = "fallback",
+			timeout_ms = 500,
+		}, -- Customize formatters
 		formatters = {
 			shfmt = {
 				prepend_args = { "-i", "2" },
