@@ -166,6 +166,7 @@ alt-shift-j = ['join-with down', 'mode main']
 alt-shift-k = ['join-with up', 'mode main']
 alt-shift-l = ['join-with right', 'mode main']
 
+# $ aerospace list-apps to get app-id
 [[on-window-detected]]
 if.app-id = 'net.kovidgoyal.kitty'
 run = 'move-node-to-workspace T'
@@ -177,3 +178,14 @@ run = 'move-node-to-workspace B'
 [[on-window-detected]]
 if.app-id = 'net.whatsapp.WhatsApp'
 run = 'move-node-to-workspace C'
+[[on-window-detected]]
+if.app-id = 'com.tinyspeck.slackmacgap'
+run = 'move-node-to-workspace C'
+[[on-window-detected]]
+if.app-id = 'com.hnc.Discord'
+run = 'move-node-to-workspace C'
+
+# YoutubeMusic app
+[[on-window-detected]]
+if.app-id = 'com.brave.Browser.app.cinhimbnkkaeohfgghhklpknlkffjgod'
+run = 'move-node-to-workspace M'
