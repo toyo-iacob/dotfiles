@@ -81,9 +81,22 @@ return {
 			lspconfig.gitlab_ci_ls.setup({
 				capabilities = capabilities,
 			})
-
-			vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "Signature" })
-			vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code action" })
 		end,
+	},
+	{
+		"nvimdev/lspsaga.nvim",
+		config = function()
+			require("lspsaga").setup({
+				ui = {
+					code_action = "",
+				},
+			})
+			vim.keymap.set("n", "K", ":Lspsaga hover_doc<CR>", { desc = "Signature" })
+			vim.keymap.set("n", "<leader>ca", ":Lspsaga code_action<CR>", { desc = "Code action" })
+		end,
+		dependencies = {
+			"nvim-treesitter/nvim-treesitter", -- optional
+			"nvim-tree/nvim-web-devicons", -- optional
+		},
 	},
 }
