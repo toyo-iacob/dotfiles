@@ -23,3 +23,7 @@ vim.opt.swapfile = false
 
 vim.wo.number = true
 vim.wo.relativenumber = true
+
+-- spelling
+vim.opt.spelllang = 'en_us'
+vim.opt.spell = true

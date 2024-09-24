@@ -55,6 +55,7 @@ brew install yazi ffmpegthumbnailer sevenzip jq poppler fd ripgrep fzf zoxide im
 brew install node
 
 brew install go
+go install gotest.tools/gotestsum@latest
 
 brew install rust
 
