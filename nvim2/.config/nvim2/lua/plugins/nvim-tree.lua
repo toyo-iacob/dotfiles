@@ -9,6 +9,7 @@ return {
 		require("nvim-tree").setup({
 			disable_netrw = true,
 			sync_root_with_cwd = true,
+			auto_reload_on_write = true,
 			update_focused_file = {
 				enable = true,
 				update_root = {
@@ -17,9 +18,36 @@ return {
 			},
 			view = {
 				adaptive_size = true,
+				centralize_selection = false,
+				cursorline = true,
+				debounce_delay = 15,
+				preserve_window_proportions = false,
+				signcolumn = "yes",
 			},
 			filters = {
+				dotfiles = false,
 				git_ignored = false,
+			},
+			renderer = {
+				add_trailing = false,
+				group_empty = false,
+				highlight_git = false,
+				full_name = false,
+				highlight_opened_files = "all",
+				highlight_modified = "none",
+				root_folder_label = ":~:s?$?/..?",
+				indent_width = 2,
+				indent_markers = {
+					enable = true,
+					inline_arrows = true,
+					icons = {
+						corner = "└",
+						edge = "│",
+						item = "│",
+						bottom = "─",
+						none = " ",
+					},
+				},
 			},
 		})
 	end,
