@@ -25,5 +25,12 @@ vim.wo.number = true
 vim.wo.relativenumber = true
 
 -- spelling
-vim.opt.spelllang = 'en_us'
+vim.opt.spelllang = "en_us"
 vim.opt.spell = true
+
+-- Having longer updatetime (default is 4000 ms = 4s) leads to noticeable
+-- delays and poor user experience
+vim.opt.updatetime = 300
+
+-- auto read file if changed in other part
+vim.opt.autoread = true
