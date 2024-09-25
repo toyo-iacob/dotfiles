@@ -2,13 +2,16 @@
 
 export PATH="/opt/homebrew/bin:$PATH"
 
+# ---- Default config path for other stuff -----
+ export XDG_CONFIG_HOME="$HOME/.config"
+
 # ---- History settings -----
 
 export HISTTIMEFORMAT="%h %d %H:%M:%S "
 export HISTSIZE=10000
 export HISTFILESIZE=20000
 export HISTFILE=$HOME/.zhistory
-setopt share_history 
+setopt share_history
 setopt hist_expire_dups_first
 setopt hist_ignore_dups
 setopt hist_verify

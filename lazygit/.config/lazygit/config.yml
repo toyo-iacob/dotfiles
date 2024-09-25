@@ -1,0 +1,3 @@
+os:
+  openPreset: 'nvim-remote'
+  editPreset: 'nvim-remote'
