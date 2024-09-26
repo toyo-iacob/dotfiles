@@ -34,6 +34,10 @@ vim.opt.updatetime = 300
 
 -- auto read file if changed in other part
 vim.opt.autoread = true
+vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "CursorHoldI", "FocusGained" }, {
+	command = "if mode() != 'c' | checktime | endif",
+	pattern = { "*" },
+})
 
 -- number of context lines to see above and below cursor, ie. center cursor
 vim.opt.so = 20
