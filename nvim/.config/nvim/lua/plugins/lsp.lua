@@ -93,10 +93,12 @@ return {
 			})
 			vim.keymap.set("n", "K", ":Lspsaga hover_doc<CR>", { desc = "Signature" })
 			vim.keymap.set("n", "<leader>ca", ":Lspsaga code_action<CR>", { desc = "Code action" })
+			vim.keymap.set("n", "<leader>cd", ":Lspsaga show_buf_diagnostics<CR>", { desc = "Buf diagnostics" })
+			vim.keymap.set("n", "go", ":Lspsaga outline<CR>", { desc = "Outline" })
 		end,
 		dependencies = {
 			"nvim-treesitter/nvim-treesitter", -- optional
-			"nvim-tree/nvim-web-devicons", -- optional
+			"nvim-tree/nvim-web-devicons",  -- optional
 		},
 	},
 }

@@ -44,9 +44,8 @@ return {
 						{ desc = "Reset hunk" })
 					map('n', '<leader>gR', gitsigns.reset_buffer, { desc = "Reset Buffer" })
 					map('n', '<leader>gp', gitsigns.preview_hunk, { desc = "Preview Hunk" })
-					map('n', '<leader>gb', function() gitsigns.blame_line { full = true } end, { desc = "Blame Line" })
+					map('n', '<leader>gb', gitsigns.blame, { desc = "Blame" })
 					map('n', '<leader>gd', gitsigns.diffthis, { desc = "Diff" })
-					-- map('n', '<leader>gD', function() gitsigns.diffthis('~') end, { desc = "Diff2" })
 					map('n', '<leader>gt', gitsigns.toggle_deleted, { desc = "Toggle Deleted" })
 				end
 			})
