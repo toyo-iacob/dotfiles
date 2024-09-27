@@ -66,6 +66,7 @@ return {
 				fname_width = 0.4,
 				symbol_width = 0.2,
 				symbol_type_width = 0.1,
+				path_display = { "shorten" },
 			}
 			local lsp_document_symbols = function()
 				builtin.lsp_document_symbols(lspOpts)
