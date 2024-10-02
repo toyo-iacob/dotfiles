@@ -13,6 +13,7 @@ return {
 			"nvim-lua/plenary.nvim",
 			"BurntSushi/ripgrep",
 			"nvim-telescope/telescope-live-grep-args.nvim",
+			"folke/todo-comments.nvim",
 		},
 		config = function()
 			local lga_actions = require("telescope-live-grep-args.actions")
@@ -56,17 +57,30 @@ return {
 			})
 			local builtin = require("telescope.builtin")
 			local live_grep_args_shortcuts = require("telescope-live-grep-args.shortcuts")
+
 			local find_files = function()
 				builtin.find_files({
 					find_command = { "rg", "--files", "--iglob", "!.git", "--hidden" },
 					previewer = true,
 				})
 			end
+
+			local grepOpts = {
+				initial_mode = "normal",
+			}
+			local grep_word_under_cursor = function()
+				live_grep_args_shortcuts.grep_word_under_cursor(grepOpts)
+			end
+			local grep_visual_selection = function()
+				live_grep_args_shortcuts.grep_visual_selection(grepOpts)
+			end
+
 			local lspOpts = {
+				initial_mode = "normal",
 				fname_width = 0.4,
 				symbol_width = 0.2,
 				symbol_type_width = 0.1,
-				path_display = { "shorten" },
+				path_display = { "smart" },
 			}
 			local lsp_document_symbols = function()
 				builtin.lsp_document_symbols(lspOpts)
@@ -97,18 +111,10 @@ return {
 			vim.keymap.set("n", "<leader>fs", lsp_document_symbols, { desc = "Document symbols" })
 			vim.keymap.set("n", "<leader>fS", lsp_dynamic_workspace_symbols, { desc = "Workspace symbols" })
 
-			vim.keymap.set(
-				"n",
-				"<leader>fc",
-				live_grep_args_shortcuts.grep_word_under_cursor,
-				{ desc = "Grep word under cursor" }
-			)
-			vim.keymap.set(
-				"v",
-				"<leader>f",
-				live_grep_args_shortcuts.grep_visual_selection,
-				{ desc = "Grep selection" }
-			)
+			vim.keymap.set("n", "<leader>fc", grep_word_under_cursor, { desc = "Grep word under cursor" })
+			vim.keymap.set("v", "<leader>f", grep_visual_selection, { desc = "Grep selection" })
+
+			vim.keymap.set("n", "<leader>ft", ":TodoTelescope<CR>", { desc = "TODO's" })
 
 			vim.keymap.set("n", "gd", lsp_definitions, { desc = "Go to definitions" })
 			vim.keymap.set("n", "gt", lsp_type_definitions, { desc = "Go to type definitions" })

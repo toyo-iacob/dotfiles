@@ -15,7 +15,6 @@ return {
 			go = { "gofumpt", "goimports" },
 			json = { "jq" },
 			templ = { "templ" },
-			terraform = { "terraform_fmt" },
 			yaml = { "yamlfmt" },
 			-- Use the "*" filetype to run formatters on all filetypes.
 			["*"] = { "codespell" },
@@ -31,11 +30,14 @@ return {
 		format_on_save = {
 			-- I recommend these options. See :help conform.format for details.
 			lsp_format = "fallback",
-			timeout_ms = 500,
+			timeout_ms = 1000,
 		}, -- Customize formatters
 		formatters = {
 			shfmt = {
 				prepend_args = { "-i", "2" },
+			},
+			gofumpt = {
+				args = { "-extra" },
 			},
 		},
 	},
