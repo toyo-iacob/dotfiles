@@ -41,3 +41,6 @@ vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "CursorHoldI", "FocusGai
 
 -- number of context lines to see above and below cursor, ie. center cursor
 vim.opt.so = 20
+
+-- persist undo to file between sessions
+vim.o.undofile = true
