@@ -75,6 +75,20 @@ return {
 				live_grep_args_shortcuts.grep_visual_selection(grepOpts)
 			end
 
+			local lspSymbolOpts = {
+				initial_mode = "insert",
+				fname_width = 0.4,
+				symbol_width = 0.2,
+				symbol_type_width = 0.1,
+				path_display = { "smart" },
+			}
+			local lsp_document_symbols = function()
+				builtin.lsp_document_symbols(lspSymbolOpts)
+			end
+			local lsp_dynamic_workspace_symbols = function()
+				builtin.lsp_dynamic_workspace_symbols(lspSymbolOpts)
+			end
+
 			local lspOpts = {
 				initial_mode = "normal",
 				fname_width = 0.4,
@@ -82,12 +96,6 @@ return {
 				symbol_type_width = 0.1,
 				path_display = { "smart" },
 			}
-			local lsp_document_symbols = function()
-				builtin.lsp_document_symbols(lspOpts)
-			end
-			local lsp_dynamic_workspace_symbols = function()
-				builtin.lsp_dynamic_workspace_symbols(lspOpts)
-			end
 			local lsp_definitions = function()
 				builtin.lsp_definitions(lspOpts)
 			end
@@ -104,6 +112,12 @@ return {
 			vim.keymap.set("n", "<leader>ff", find_files, { desc = "Files" })
 			vim.keymap.set("n", "<leader>fo", builtin.oldfiles, { desc = "Old files" })
 			vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Grep" })
+			vim.keymap.set(
+				"n",
+				"<leader>fG",
+				":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>",
+				{ desc = "Grep" }
+			)
 			vim.keymap.set("n", "<leader>fz", builtin.current_buffer_fuzzy_find, { desc = "Document fuzzy" })
 			-- TODO: how to sort by last accessed here?
 			vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Buffers" })
