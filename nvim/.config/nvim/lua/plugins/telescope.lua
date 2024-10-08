@@ -16,7 +16,6 @@ return {
 			"folke/todo-comments.nvim",
 		},
 		config = function()
-			local lga_actions = require("telescope-live-grep-args.actions")
 			require("telescope").setup({
 				defaults = {
 					vimgrep_arguments = {
@@ -46,7 +45,61 @@ return {
 				},
 				pickers = {
 					find_files = {
+						find_command = { "rg", "--files", "--iglob", "!.git", "--hidden" },
 						hidden = true,
+					},
+					buffers = {
+						initial_mode = "normal",
+						sort_lastused = true,
+						sort_mru = true,
+						mappings = {
+							n = {
+								["x"] = "delete_buffer",
+							},
+						},
+					},
+					lsp_document_symbols = {
+						initial_mode = "insert",
+						fname_width = 0.4,
+						symbol_width = 0.2,
+						symbol_type_width = 0.1,
+						path_display = { "smart" },
+					},
+					lsp_dynamic_workspace_symbols = {
+						initial_mode = "insert",
+						fname_width = 0.4,
+						symbol_width = 0.2,
+						symbol_type_width = 0.1,
+						path_display = { "smart" },
+					},
+					lsp_definitions = {
+						initial_mode = "normal",
+						fname_width = 0.4,
+						symbol_width = 0.2,
+						symbol_type_width = 0.1,
+						path_display = { "smart" },
+					},
+					lsp_type_definitions = {
+						initial_mode = "normal",
+						fname_width = 0.4,
+						symbol_width = 0.2,
+						symbol_type_width = 0.1,
+						path_display = { "smart" },
+					},
+					lsp_references = {
+						initial_mode = "normal",
+						fname_width = 0.4,
+						symbol_width = 0.2,
+						symbol_type_width = 0.1,
+						path_display = { "smart" },
+						include_declaration = false,
+					},
+					lsp_implementations = {
+						initial_mode = "normal",
+						fname_width = 0.4,
+						symbol_width = 0.2,
+						symbol_type_width = 0.1,
+						path_display = { "smart" },
 					},
 				},
 				extensions = {
@@ -56,14 +109,8 @@ return {
 				},
 			})
 			local builtin = require("telescope.builtin")
+			local live_grep_args = require("telescope").load_extension("live_grep_args")
 			local live_grep_args_shortcuts = require("telescope-live-grep-args.shortcuts")
-
-			local find_files = function()
-				builtin.find_files({
-					find_command = { "rg", "--files", "--iglob", "!.git", "--hidden" },
-					previewer = true,
-				})
-			end
 
 			local grepOpts = {
 				initial_mode = "normal",
@@ -75,67 +122,34 @@ return {
 				live_grep_args_shortcuts.grep_visual_selection(grepOpts)
 			end
 
-			local lspSymbolOpts = {
-				initial_mode = "insert",
-				fname_width = 0.4,
-				symbol_width = 0.2,
-				symbol_type_width = 0.1,
-				path_display = { "smart" },
-			}
-			local lsp_document_symbols = function()
-				builtin.lsp_document_symbols(lspSymbolOpts)
-			end
-			local lsp_dynamic_workspace_symbols = function()
-				builtin.lsp_dynamic_workspace_symbols(lspSymbolOpts)
-			end
+			-- resume
+			vim.keymap.set("n", "<leader>fp", builtin.resume, { desc = "Previous telescope picker" })
 
-			local lspOpts = {
-				initial_mode = "normal",
-				fname_width = 0.4,
-				symbol_width = 0.2,
-				symbol_type_width = 0.1,
-				path_display = { "smart" },
-			}
-			local lsp_definitions = function()
-				builtin.lsp_definitions(lspOpts)
-			end
-			local lsp_type_definitions = function()
-				builtin.lsp_type_definitions(lspOpts)
-			end
-			local lsp_references = function()
-				builtin.lsp_references(lspOpts)
-			end
-			local lsp_implementations = function()
-				builtin.lsp_implementations(lspOpts)
-			end
-
-			vim.keymap.set("n", "<leader>ff", find_files, { desc = "Files" })
+			-- files
+			vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Files" })
+			vim.keymap.set("n", "<leader>fm", builtin.git_status, { desc = "Modified files" })
 			vim.keymap.set("n", "<leader>fo", builtin.oldfiles, { desc = "Old files" })
-			vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Grep" })
-			vim.keymap.set(
-				"n",
-				"<leader>fG",
-				":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>",
-				{ desc = "Grep" }
-			)
-			vim.keymap.set("n", "<leader>fz", builtin.current_buffer_fuzzy_find, { desc = "Document fuzzy" })
-			-- TODO: how to sort by last accessed here?
 			vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Buffers" })
-			vim.keymap.set("n", "<leader>fr", builtin.registers, { desc = "Registers" })
-			vim.keymap.set("n", "<leader>fs", lsp_document_symbols, { desc = "Document symbols" })
-			vim.keymap.set("n", "<leader>fS", lsp_dynamic_workspace_symbols, { desc = "Workspace symbols" })
 
+			-- grep
+			vim.keymap.set("n", "<leader>fg", live_grep_args.live_grep_args, { desc = "Grep" })
+			vim.keymap.set("n", "<leader>fz", builtin.current_buffer_fuzzy_find, { desc = "Document fuzzy" })
 			vim.keymap.set("n", "<leader>fc", grep_word_under_cursor, { desc = "Grep word under cursor" })
 			vim.keymap.set("v", "<leader>f", grep_visual_selection, { desc = "Grep selection" })
 
+			-- lsp
+			vim.keymap.set("n", "<leader>fs", builtin.lsp_document_symbols, { desc = "Document symbols" })
+			vim.keymap.set("n", "<leader>fS", builtin.lsp_dynamic_workspace_symbols, { desc = "Workspace symbols" })
+
+			vim.keymap.set("n", "gd", builtin.lsp_definitions, { desc = "Go to definitions" })
+			vim.keymap.set("n", "gt", builtin.lsp_type_definitions, { desc = "Go to type definitions" })
+			vim.keymap.set("n", "gr", builtin.lsp_references, { desc = "Go to references" })
+			vim.keymap.set("n", "gi", builtin.lsp_implementations, { desc = "Go to implementations" })
+
+			-- other
+			vim.keymap.set("n", "<leader>fr", builtin.registers, { desc = "Registers" })
+
 			vim.keymap.set("n", "<leader>ft", ":TodoTelescope<CR>", { desc = "TODO's" })
-
-			vim.keymap.set("n", "gd", lsp_definitions, { desc = "Go to definitions" })
-			vim.keymap.set("n", "gt", lsp_type_definitions, { desc = "Go to type definitions" })
-			vim.keymap.set("n", "gr", lsp_references, { desc = "Go to references" })
-			vim.keymap.set("n", "gi", lsp_implementations, { desc = "Go to implementations" })
-
-			require("telescope").load_extension("live_grep_args")
 		end,
 	},
 }
