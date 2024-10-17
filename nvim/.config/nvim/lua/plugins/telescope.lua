@@ -13,6 +13,7 @@ return {
 			"nvim-lua/plenary.nvim",
 			"BurntSushi/ripgrep",
 			"nvim-telescope/telescope-live-grep-args.nvim",
+			"nvim-telescope/telescope-project.nvim",
 			"folke/todo-comments.nvim",
 		},
 		config = function()
@@ -49,7 +50,6 @@ return {
 						hidden = true,
 					},
 					buffers = {
-						initial_mode = "normal",
 						sort_lastused = true,
 						sort_mru = true,
 						mappings = {
@@ -59,35 +59,30 @@ return {
 						},
 					},
 					lsp_document_symbols = {
-						initial_mode = "insert",
 						fname_width = 0.4,
 						symbol_width = 0.2,
 						symbol_type_width = 0.1,
 						path_display = { "smart" },
 					},
 					lsp_dynamic_workspace_symbols = {
-						initial_mode = "insert",
 						fname_width = 0.4,
 						symbol_width = 0.2,
 						symbol_type_width = 0.1,
 						path_display = { "smart" },
 					},
 					lsp_definitions = {
-						initial_mode = "normal",
 						fname_width = 0.4,
 						symbol_width = 0.2,
 						symbol_type_width = 0.1,
 						path_display = { "smart" },
 					},
 					lsp_type_definitions = {
-						initial_mode = "normal",
 						fname_width = 0.4,
 						symbol_width = 0.2,
 						symbol_type_width = 0.1,
 						path_display = { "smart" },
 					},
 					lsp_references = {
-						initial_mode = "normal",
 						fname_width = 0.4,
 						symbol_width = 0.2,
 						symbol_type_width = 0.1,
@@ -95,7 +90,6 @@ return {
 						include_declaration = false,
 					},
 					lsp_implementations = {
-						initial_mode = "normal",
 						fname_width = 0.4,
 						symbol_width = 0.2,
 						symbol_type_width = 0.1,
@@ -111,19 +105,10 @@ return {
 			local builtin = require("telescope.builtin")
 			local live_grep_args = require("telescope").load_extension("live_grep_args")
 			local live_grep_args_shortcuts = require("telescope-live-grep-args.shortcuts")
-
-			local grepOpts = {
-				initial_mode = "normal",
-			}
-			local grep_word_under_cursor = function()
-				live_grep_args_shortcuts.grep_word_under_cursor(grepOpts)
-			end
-			local grep_visual_selection = function()
-				live_grep_args_shortcuts.grep_visual_selection(grepOpts)
-			end
+			local project = require("telescope").load_extension("project")
 
 			-- resume
-			vim.keymap.set("n", "<leader>fp", builtin.resume, { desc = "Previous telescope picker" })
+			vim.keymap.set("n", "<leader><leader>", builtin.resume, { desc = "Previous telescope picker" })
 
 			-- files
 			vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Files" })
@@ -134,8 +119,18 @@ return {
 			-- grep
 			vim.keymap.set("n", "<leader>fg", live_grep_args.live_grep_args, { desc = "Grep" })
 			vim.keymap.set("n", "<leader>fz", builtin.current_buffer_fuzzy_find, { desc = "Document fuzzy" })
-			vim.keymap.set("n", "<leader>fc", grep_word_under_cursor, { desc = "Grep word under cursor" })
-			vim.keymap.set("v", "<leader>f", grep_visual_selection, { desc = "Grep selection" })
+			vim.keymap.set(
+				"n",
+				"<leader>fc",
+				live_grep_args_shortcuts.grep_word_under_cursor,
+				{ desc = "Grep word under cursor" }
+			)
+			vim.keymap.set(
+				"v",
+				"<leader>f",
+				live_grep_args_shortcuts.grep_visual_selection,
+				{ desc = "Grep selection" }
+			)
 
 			-- lsp
 			vim.keymap.set("n", "<leader>fs", builtin.lsp_document_symbols, { desc = "Document symbols" })
@@ -145,6 +140,9 @@ return {
 			vim.keymap.set("n", "gt", builtin.lsp_type_definitions, { desc = "Go to type definitions" })
 			vim.keymap.set("n", "gr", builtin.lsp_references, { desc = "Go to references" })
 			vim.keymap.set("n", "gi", builtin.lsp_implementations, { desc = "Go to implementations" })
+
+			-- projects
+			vim.keymap.set("n", "<leader>fp", project.project, { desc = "Projects" })
 
 			-- other
 			vim.keymap.set("n", "<leader>fr", builtin.registers, { desc = "Registers" })

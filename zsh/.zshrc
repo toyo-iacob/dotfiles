@@ -3,7 +3,7 @@
 export PATH="/opt/homebrew/bin:$PATH"
 
 # ---- Default config path for other stuff -----
- export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_CONFIG_HOME="$HOME/.config"
 
 # ---- History settings -----
 
@@ -116,3 +116,5 @@ plug "Aloxaf/fzf-tab"
 # Load and initialise completion system
 autoload -Uz compinit
 compinit
+
+source $HOME/.zprofile
