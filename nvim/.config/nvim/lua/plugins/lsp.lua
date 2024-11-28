@@ -24,7 +24,7 @@ return {
 					"lua_ls",
 					"grammarly",
 					"nginx_language_server",
-					"pbls",
+					"bufls",
 					"sqls",
 					"terraformls",
 					"gitlab_ci_ls",
@@ -69,7 +69,7 @@ return {
 			lspconfig.nginx_language_server.setup({
 				capabilities = capabilities,
 			})
-			lspconfig.pbls.setup({
+			lspconfig.buf_ls.setup({
 				capabilities = capabilities,
 			})
 			lspconfig.sqls.setup({
