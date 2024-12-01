@@ -107,7 +107,7 @@ function yy() {
 plug "zsh-users/zsh-autosuggestions"
 plug "zap-zsh/supercharge"
 plug "wintermi/zsh-starship"
-plug "jeffreytse/zsh-vi-mode"
+export ZVM_INIT_MODE=sourcing && plug "jeffreytse/zsh-vi-mode"
 plug "zsh-users/zsh-syntax-highlighting"
 plug "MichaelAquilina/zsh-you-should-use"
 plug "zap-zsh/exa"
