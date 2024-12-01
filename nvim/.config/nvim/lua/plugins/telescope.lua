@@ -108,7 +108,7 @@ return {
 								["d"] = project_actions.delete_project,
 								["r"] = project_actions.rename_project,
 								-- ["c"] = project_actions.add_project,
-								["c"] = project_actions.add_project_cwd,
+								["a"] = project_actions.add_project_cwd,
 								["f"] = project_actions.find_project_files,
 								["b"] = project_actions.browse_project_files,
 								["s"] = project_actions.search_in_project_files,

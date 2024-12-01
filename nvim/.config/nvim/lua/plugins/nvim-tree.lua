@@ -8,7 +8,7 @@ return {
 	config = function()
 		require("nvim-tree").setup({
 			disable_netrw = true,
-			sync_root_with_cwd = true,
+			-- sync_root_with_cwd = true,
 			auto_reload_on_write = true,
 			update_focused_file = {
 				enable = true,
@@ -31,9 +31,9 @@ return {
 			renderer = {
 				add_trailing = false,
 				group_empty = false,
-				highlight_git = false,
+				highlight_git = true,
 				full_name = false,
-				highlight_opened_files = "all",
+				highlight_opened_files = "icon",
 				highlight_modified = "none",
 				root_folder_label = ":~:s?$?/..?",
 				indent_width = 2,
