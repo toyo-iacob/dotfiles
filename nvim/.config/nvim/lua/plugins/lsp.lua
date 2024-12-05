@@ -81,6 +81,7 @@ return {
 			lspconfig.gitlab_ci_ls.setup({
 				capabilities = capabilities,
 			})
+			vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename, { desc = "Rename" })
 		end,
 	},
 	{
