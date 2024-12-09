@@ -37,9 +37,6 @@ alias v='nvim'
 
 # ---- Fzf -----
 
-# Set up fzf key bindings and fuzzy completion
-source <(fzf --zsh)
-
 # Use fd instead of fzf
 export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
@@ -112,6 +109,9 @@ plug "zsh-users/zsh-syntax-highlighting"
 plug "MichaelAquilina/zsh-you-should-use"
 plug "zap-zsh/exa"
 plug "Aloxaf/fzf-tab"
+
+# Set up fzf key bindings and fuzzy completion
+source <(fzf --zsh)
 
 # Load and initialise completion system
 autoload -Uz compinit
