@@ -44,3 +44,6 @@ vim.opt.so = 20
 
 -- persist undo to file between sessions
 vim.o.undofile = true
+
+-- highlight cursor line
+vim.opt.cursorline = true
