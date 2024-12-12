@@ -99,6 +99,17 @@ function yy() {
 	rm -f -- "$tmp"
 }
 
+# ---- Draw lines between commands -----
+
+my-preexec() typeset -g my_cmd=$2
+my-precmd() {
+  [[ ${my_cmd-} == clear ]] || print -r -- ${(r:$COLUMNS::_ :):_}
+  typeset -g my_cmd=
+}
+autoload -Uz add-zsh-hook
+add-zsh-hook preexec my-preexec
+add-zsh-hook precmd my-precmd
+
 # Created by Zap installer
 [ -f "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh" ] && source "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh"
 plug "zsh-users/zsh-autosuggestions"
