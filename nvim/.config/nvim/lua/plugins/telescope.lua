@@ -166,6 +166,7 @@ return {
 			-- lsp
 			vim.keymap.set("n", "<leader>fs", builtin.lsp_document_symbols, { desc = "Document symbols" })
 			vim.keymap.set("n", "<leader>fS", builtin.lsp_dynamic_workspace_symbols, { desc = "Workspace symbols" })
+			vim.keymap.set("n", "<leader>fd", builtin.diagnostics, { desc = "Diagnostics" })
 
 			vim.keymap.set("n", "gd", builtin.lsp_definitions, { desc = "Go to definitions" })
 			vim.keymap.set("n", "gt", builtin.lsp_type_definitions, { desc = "Go to type definitions" })
