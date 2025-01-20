@@ -26,12 +26,7 @@ return {
 		default_format_opts = {
 			lsp_format = "fallback",
 		},
-		-- Set up format-on-save
-		format_on_save = {
-			-- I recommend these options. See :help conform.format for details.
-			lsp_format = "fallback",
-			timeout_ms = 1000,
-		}, -- Customize formatters
+		-- Customize formatters
 		formatters = {
 			shfmt = {
 				prepend_args = { "-i", "2" },
@@ -41,4 +36,33 @@ return {
 			},
 		},
 	},
+	config = function()
+		require("conform").setup({
+			format_on_save = function(bufnr)
+				-- Disable with a global variable
+				if vim.g.disable_autoformat then
+					return
+				end
+				return { timeout_ms = 1000, lsp_format = "fallback" }
+			end,
+		})
+
+		vim.keymap.set("n", "<leader>cf", function()
+			require("conform").format({ async = true, lsp_fallback = true })
+		end, { desc = "Format buf" })
+
+		-- Key mapping for FormatToggle
+		vim.keymap.set("n", "<leader>cc", ":FormatOnSaveToggle<CR>", { desc = "Toggle Format on Save" })
+
+		vim.api.nvim_create_user_command("FormatOnSaveToggle", function(args)
+			if vim.g.disable_autoformat then
+				-- FormatDisable! will disable formatting just for this buffer
+				vim.g.disable_autoformat = false
+			else
+				vim.g.disable_autoformat = true
+			end
+		end, {
+			desc = "Toggle autoformat-on-save",
+		})
+	end,
 }
