@@ -24,7 +24,7 @@ return {
 					"lua_ls",
 					"grammarly",
 					"nginx_language_server",
-					"bufls",
+					"buf_ls",
 					"sqls",
 					"terraformls",
 					"gitlab_ci_ls",

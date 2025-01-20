@@ -12,7 +12,7 @@ return {
 			bash = { "shellcheck" },
 			buf = { "buf" },
 			lua = { "stylua" },
-			go = { "gofumpt", "goimports", "gomodifytags" },
+			go = { "gofumpt", "goimports", "gomodifytags", "gotmpl" },
 			json = { "jq" },
 			templ = { "templ" },
 			yaml = { "yamlfmt" },
