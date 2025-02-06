@@ -34,7 +34,7 @@ return {
 				highlight_git = true,
 				full_name = false,
 				highlight_opened_files = "icon",
-				highlight_modified = "none",
+				-- highlight_modified = "none",
 				root_folder_label = ":~:s?$?/..?",
 				indent_width = 2,
 				indent_markers = {
@@ -48,6 +48,9 @@ return {
 						none = " ",
 					},
 				},
+			},
+			git = {
+				timeout = 1000,
 			},
 		})
 	end,
