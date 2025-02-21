@@ -26,6 +26,7 @@ alias mod='go mod tidy && go mod download && go mod vendor'
 
 alias docker-update='docker image ls --format "{{.Repository}}:{{.Tag}}" | grep 410715645895.dkr.ecr.us-east-1.amazonaws.com | while read line; do docker pull $line; done'
 alias docker-stop-all='docker stop $(docker ps -a -q)'
+alias k="kubectl"
 
 # ---- GNU GPG -----
 
@@ -118,3 +119,7 @@ autoload -Uz compinit
 compinit
 
 source $HOME/.zprofile
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+export PATH="$HOME/.local/bin:$PATH"
