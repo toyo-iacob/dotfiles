@@ -7,27 +7,54 @@ return {
 		end,
 	},
 	{
-		"williamboman/mason-lspconfig.nvim",
+		"WhoIsSethDaniel/mason-tool-installer.nvim",
 		lazy = false,
-		opts = {
-			auto_install = true,
-		},
 		config = function()
-			require("mason-lspconfig").setup({
+			require("mason-tool-installer").setup({
 				ensure_installed = {
-					"bashls",
-					"dockerls",
+					-- LSPs
+					"bash-language-server",
+					"dockerfile-language-server",
 					"gopls",
 					"templ",
-					"helm_ls",
-					"spectral",
-					"lua_ls",
-					"grammarly",
-					"nginx_language_server",
-					"buf_ls",
+					"helm-ls",
+					"spectral-language-server",
+					"lua-language-server",
+					"grammarly-languageserver",
+					"nginx-language-server",
+					"buf-language-server",
 					"sqls",
-					"terraformls",
-					"gitlab_ci_ls",
+					"terraform-ls",
+					"gitlab-ci-ls",
+					"python-lsp-server",
+					"typescript-language-server",
+					"html-lsp",
+					"htmx-lsp",
+
+					-- Linters
+					"pylint",
+					"eslint_d",
+					"shellcheck",
+					"jsonlint",
+					"yamllint",
+					"htmlhint",
+					"textlint",
+					"codespell",
+					"golangci-lint",
+					"tflint",
+					"sqlfmt",
+					"nilaway",
+
+					-- Formatters
+					"prettierd",
+					"stylua",
+					"gofumpt",
+					"goimports",
+					"gomodifytags",
+					"sql-formatter",
+					"yamlfmt",
+					"shellharden",
+					"jq",
 				},
 			})
 		end,
@@ -99,7 +126,7 @@ return {
 		end,
 		dependencies = {
 			"nvim-treesitter/nvim-treesitter", -- optional
-			"nvim-tree/nvim-web-devicons", -- optional
+			"nvim-tree/nvim-web-devicons",  -- optional
 		},
 	},
 }
