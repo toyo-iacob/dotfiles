@@ -13,23 +13,23 @@ return {
 			require("mason-tool-installer").setup({
 				ensure_installed = {
 					-- LSPs
-					"bash-language-server",
-					"dockerfile-language-server",
-					"gopls",
-					"templ",
-					"helm-ls",
-					"spectral-language-server",
-					"lua-language-server",
-					"grammarly-languageserver",
-					"nginx-language-server",
-					"buf-language-server",
-					"sqls",
-					"terraform-ls",
-					"gitlab-ci-ls",
-					"python-lsp-server",
-					"typescript-language-server",
-					"html-lsp",
-					"htmx-lsp",
+					-- "bash-language-server",
+					-- "dockerfile-language-server",
+					-- "gopls",
+					-- "templ",
+					-- "helm-ls",
+					-- "spectral-language-server",
+					-- "lua-language-server",
+					-- "grammarly-languageserver",
+					-- "nginx-language-server",
+					-- "buf-language-server",
+					-- "sqls",
+					-- "terraform-ls",
+					-- "gitlab-ci-ls",
+					-- "python-lsp-server",
+					-- "typescript-language-server",
+					-- "html-lsp",
+					-- "htmx-lsp",
 
 					-- Linters
 					"pylint",
@@ -60,54 +60,66 @@ return {
 		end,
 	},
 	{
-		"neovim/nvim-lspconfig",
+		"williamboman/mason-lspconfig.nvim",
+		lazy = false,
 		dependencies = {
+			"neovim/nvim-lspconfig",
 			"hrsh7th/cmp-nvim-lsp",
 		},
-		lazy = false,
 		config = function()
-			local capabilities = require("cmp_nvim_lsp").default_capabilities()
+			require("mason-lspconfig").setup({
+				ensure_installed = {
+					"tflint",
+					"helm_ls",
+					"bashls",
+					"buf_ls",
+					"templ",
+					"gopls",
+					"htmx",
+					"dockerls",
+					"spectral",
+					"lua_ls",
+					"grammarly",
+					"nginx_language_server",
+					"sqls",
+					"terraformls",
+					"gitlab_ci_ls",
+					"pylsp",
+					"ts_ls",
+					"html",
+					"pbls",
+				},
+				automatic_installation = true,
+			})
 
 			local lspconfig = require("lspconfig")
-			lspconfig.bashls.setup({
-				capabilities = capabilities,
+			local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
+			require("mason-lspconfig").setup_handlers({
+				function(server_name)
+					lspconfig[server_name].setup({
+						capabilities = capabilities,
+					})
+				end,
 			})
-			lspconfig.dockerls.setup({
-				capabilities = capabilities,
-			})
+
 			lspconfig.gopls.setup({
 				capabilities = capabilities,
+				on_attach = function(client, bufnr)
+					local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+					buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+
+					-- Auto-format and organize imports on save
+					vim.api.nvim_create_autocmd("BufWritePre", {
+						buffer = bufnr,
+						callback = function()
+							vim.lsp.buf.format({ async = false })
+							vim.lsp.buf.code_action({ context = { only = { "source.organizeImports" } }, apply = true })
+						end,
+					})
+				end,
 			})
-			lspconfig.templ.setup({
-				capabilities = capabilities,
-			})
-			lspconfig.helm_ls.setup({
-				capabilities = capabilities,
-			})
-			lspconfig.spectral.setup({
-				capabilities = capabilities,
-			})
-			lspconfig.lua_ls.setup({
-				capabilities = capabilities,
-			})
-			lspconfig.grammarly.setup({
-				capabilities = capabilities,
-			})
-			lspconfig.nginx_language_server.setup({
-				capabilities = capabilities,
-			})
-			lspconfig.buf_ls.setup({
-				capabilities = capabilities,
-			})
-			lspconfig.sqls.setup({
-				capabilities = capabilities,
-			})
-			lspconfig.terraformls.setup({
-				capabilities = capabilities,
-			})
-			lspconfig.gitlab_ci_ls.setup({
-				capabilities = capabilities,
-			})
+
 			vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename, { desc = "Rename" })
 		end,
 	},
