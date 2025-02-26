@@ -2,3 +2,33 @@ quitOnTopLevelReturn: true
 os:
   openPreset: 'nvim-remote'
   editPreset: 'nvim-remote'
+  edit: 'nvim-remote'
+  mergeTool: 'nvim -d'
+git:
+  paging:
+    colorArg: always
+    pager: delta --dark --paging=never
+  diffCommand: "git --no-pager diff --color=always --minimal"
+  merging:
+    manualCommit: false
+  cherryPicking:
+    showPatch: true
+    useDiffTool: true
+  patching:
+    useDiffTool: true
+    showPatch: true
+  interactive:
+    diffTool: true
+gui:
+  theme:
+    activeBorderColor:
+      - '#89B4FA'
+    inactiveBorderColor:
+      - '#585B70'
+    selectedLineBgColor:
+      - '#45475A'
+    cherryPickedCommitBgColor:
+      - '#F38BA8'
+    cherryPickedCommitFgColor:
+      - '#1E1E2E'
+  nerdFontsVersion: 3

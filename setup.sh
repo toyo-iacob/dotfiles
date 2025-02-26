@@ -21,6 +21,8 @@ ssh-add --apple-use-keychain $HOME/.ssh/github
 brew install gpg2 gnupg pinentry-mac
 git config --global commit.gpgsign true
 
+brew install wget
+
 brew install stow
 
 brew install --cask kitty
@@ -33,6 +35,12 @@ tmux source $HOME/.config/tmux/tmux.conf
 #nvim
 brew install nvim
 zsh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.zsh) --branch release-v
+
+brew install git-delta
+git config --global core.pager delta
+git config --global interactive.diffFilter 'delta --color-only'
+git config --global delta.navigate true
+git config --global merge.conflictStyle zdiff3
 
 brew install lazygit
 
@@ -63,7 +71,9 @@ brew install protobuf
 
 brew install luarocks
 
-stow aerospace kitty nvim starship tmux zsh -t $HOME
+for dir in */; do
+  [ "$dir" != ".git/" ] && stow "$dir" -t "$HOME"
+done
 
 #mac specific stuff
 brew install --cask nikitabobko/tap/aerospace
