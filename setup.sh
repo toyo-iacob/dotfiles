@@ -67,11 +67,11 @@ stow aerospace kitty nvim starship tmux zsh -t $HOME
 
 #mac specific stuff
 brew install --cask nikitabobko/tap/aerospace
-brew install --cask alfred
+brew install --cask raycast
 
 echo "Add the SSH key to your Github account"
 echo "Setup gnupg to sign commits https://gist.github.com/troyfontaine/18c9146295168ee9ca2b30c00bd1b41e"
 echo "Run prefix+I while in tmux to install tpm plugins"
 
 echo "Enable aerospace"
-echo "Disable spotlight and set alfred shortcut"
+echo "Disable spotlight and set Raycast shortcut"
