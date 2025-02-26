@@ -57,7 +57,7 @@ inner.horizontal = 10
 inner.vertical = 10
 outer.left = 10
 outer.bottom = 10
-outer.top = 10
+outer.top = [{ monitor."Built-in Retina Display" = 5 }, 10]
 outer.right = 10
 
 # 'main' binding mode declaration
@@ -202,3 +202,13 @@ run = 'move-node-to-workspace G'
 [[on-window-detected]]
 if.app-id = 'com.jetbrains.datagrip'
 run = 'move-node-to-workspace D'
+
+[workspace-to-monitor-force-assignment]
+C = "Built-in Retina Display"
+M = "Built-in Retina Display"
+1 = "VG270U P (2)"
+T = "VG270U P (2)"
+G = "VG270U P (2)"
+D = "VG270U P (2)"
+B = "VG270U P (1)"
+P = "VG270U P (1)"
