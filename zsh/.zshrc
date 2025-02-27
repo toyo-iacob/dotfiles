@@ -1,3 +1,5 @@
+export PATH="$HOME/.local/bin:$PATH"
+
 # ---- Brew -----
 
 export PATH="/opt/homebrew/bin:$PATH"
@@ -11,10 +13,14 @@ export HISTTIMEFORMAT="%h %d %H:%M:%S "
 export HISTSIZE=10000
 export HISTFILESIZE=20000
 export HISTFILE=$HOME/.zhistory
-setopt share_history
-setopt hist_expire_dups_first
-setopt hist_ignore_dups
-setopt hist_verify
+setopt append_history          # Save history across sessions
+setopt inc_append_history      # Write immediately instead of waiting for logout
+setopt share_history           # Share history between all sessions
+setopt hist_expire_dups_first  # Expire duplicate entries first
+setopt hist_ignore_dups        # Ignore duplicates in history
+setopt hist_reduce_blanks      # Remove unnecessary blanks in history
+setopt hist_verify             # Don't execute immediately, allow editing
+setopt extended_history        # Save timestamps for history
 
 # ---- Go -----
 
@@ -24,24 +30,18 @@ alias mod='go mod tidy && go mod download && go mod vendor'
 
 # ---- Docker -----
 
-alias docker-update='docker image ls --format "{{.Repository}}:{{.Tag}}" | grep 410715645895.dkr.ecr.us-east-1.amazonaws.com | while read line; do docker pull $line; done'
-alias docker-stop-all='docker stop $(docker ps -a -q)'
-alias k="kubectl"
 
 # ---- GNU GPG -----
 
 export GPG_TTY=$(tty)
 
-# ---- nvim -----
-
-alias v='nvim'
-
 # ---- Fzf -----
 
 # Use fd instead of fzf
-export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
+export FZF_DEFAULT_COMMAND="fd --type f --hidden --follow --strip-cwd-prefix --exclude .git"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git"
+export FZF_ALT_C_COMMAND="fd --type d --hidden --follow --strip-cwd-prefix --exclude .git"
+export FZF_DEFAULT_OPTS="--height 40% --border --layout=reverse --info=inline"
 
 # Use fd (https://github.com/sharkdp/fd) for listing path candidates.
 # - The first argument to the function ($1) is the base path to start traversal
@@ -76,18 +76,9 @@ _fzf_comprun() {
 }
 
 
-# ---- Bat (better cat) -----
-
-alias cat='bat --paging=never'
-
 # ---- Zoxide -----
 
 eval "$(zoxide init --cmd cd zsh)"
-
-# ---- TheFuck -----
-
-eval $(thefuck --alias)
-eval $(thefuck --alias fk)
 
 # ---- Yazi -----
 
@@ -99,6 +90,27 @@ function yy() {
 	fi
 	rm -f -- "$tmp"
 }
+
+# ---- Aliases -----
+
+alias v='nvim'
+alias l='eza -la --icons'           # Better ls
+alias ll='eza -lh --icons'          # Long list
+alias la='eza -la --icons'          # All files
+alias grep='rg --smart-case'        # Use ripgrep for better searching
+alias df='duf'                      # Use duf for disk usage
+alias cat='bat --paging=never'      # Better cat
+alias rm='rm -i'                    # Confirm before deleting
+
+eval $(thefuck --alias)
+eval $(thefuck --alias fk)
+
+alias k='kubectl'
+alias kg='kubectl get pods'
+alias kga='kubectl get all'
+alias kd='kubectl describe'
+alias docker-stop-all='docker ps -q | xargs -r docker stop'
+alias docker-update='docker image ls --format "{{.Repository}}:{{.Tag}}" | grep 410715645895.dkr.ecr.us-east-1.amazonaws.com | while read line; do docker pull $line; done'
 
 # Created by Zap installer
 [ -f "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh" ] && source "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh"
@@ -116,10 +128,12 @@ source <(fzf --zsh)
 
 # Load and initialise completion system
 autoload -Uz compinit
-compinit
+if [[ -n "$ZSH_COMPDUMP" ]]; then
+  compinit -C
+else
+  compinit
+fi
+
+# ---- END -----
 
 source $HOME/.zprofile
-export PYENV_ROOT="$HOME/.pyenv"
-command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
-export PATH="$HOME/.local/bin:$PATH"
