@@ -97,7 +97,6 @@ alias v='nvim'
 alias l='eza -la --icons'           # Better ls
 alias ll='eza -lh --icons'          # Long list
 alias la='eza -la --icons'          # All files
-alias grep='rg --smart-case'        # Use ripgrep for better searching
 alias df='duf'                      # Use duf for disk usage
 alias cat='bat --paging=never'      # Better cat
 alias rm='rm -i'                    # Confirm before deleting
