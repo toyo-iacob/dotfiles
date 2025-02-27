@@ -47,7 +47,8 @@ return {
 				},
 				pickers = {
 					find_files = {
-						find_command = { "rg", "--files", "--iglob", "!.git", "--hidden" },
+						-- find_command = { "rg", "--files", "--iglob", "!.git", "--hidden" },
+						find_command = { "fd", "--type", "f", "--hidden", "--exclude", ".git" },
 						hidden = true,
 					},
 					buffers = {
