@@ -7,18 +7,8 @@ os:
 git:
   paging:
     colorArg: always
-    pager: delta --dark --paging=never
+    pager: delta --dark --paging=never --line-numbers --hyperlinks --hyperlinks-file-link-format="lazygit-edit://{path}:{line}"
   diffCommand: "git --no-pager diff --color=always --minimal"
-  merging:
-    manualCommit: false
-  cherryPicking:
-    showPatch: true
-    useDiffTool: true
-  patching:
-    useDiffTool: true
-    showPatch: true
-  interactive:
-    diffTool: true
 gui:
   theme:
     activeBorderColor:
@@ -32,3 +22,4 @@ gui:
     cherryPickedCommitFgColor:
       - '#1E1E2E'
   nerdFontsVersion: 3
+  showIcons: true

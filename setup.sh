@@ -38,7 +38,7 @@ zsh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.zsh) 
 
 brew install git-delta
 git config --global core.pager delta
-git config --global interactive.diffFilter 'delta --color-only'
+git config --global interactive.diffFilter 'delta --side-by-side --color-only'
 git config --global delta.navigate true
 git config --global merge.conflictStyle zdiff3
 
