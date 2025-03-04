@@ -22,7 +22,7 @@ return {
 				unpack = unpack or table.unpack
 				local line, col = unpack(vim.api.nvim_win_get_cursor(0))
 				return col ~= 0
-					and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+						and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 			end
 			local function limit_lsp_types(entry, ctx)
 				local kind = entry:get_kind()
@@ -33,9 +33,9 @@ return {
 
 				if char_before_cursor == "." and char_after_dot:match("[a-zA-Z]") then
 					if
-						kind == types.lsp.CompletionItemKind.Method
-						or kind == types.lsp.CompletionItemKind.Field
-						or kind == types.lsp.CompletionItemKind.Property
+							kind == types.lsp.CompletionItemKind.Method
+							or kind == types.lsp.CompletionItemKind.Field
+							or kind == types.lsp.CompletionItemKind.Property
 					then
 						return true
 					else
@@ -43,8 +43,8 @@ return {
 					end
 				elseif string.match(line, "^%s+%w+$") then
 					if
-						kind == types.lsp.CompletionItemKind.Function
-						or kind == types.lsp.CompletionItemKind.Variable
+							kind == types.lsp.CompletionItemKind.Function
+							or kind == types.lsp.CompletionItemKind.Variable
 					then
 						return true
 					else
@@ -134,7 +134,7 @@ return {
 						option = buffer_option,
 					},
 					{ name = "nvim_lua", priority = 5 },
-					{ name = "path", priority = 4 },
+					{ name = "path",     priority = 4 },
 				}),
 				sorting = {
 					priority_weight = 2,
