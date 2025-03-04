@@ -78,6 +78,7 @@ return {
 					documentation = cmp.config.window.bordered(),
 				},
 				mapping = cmp.mapping.preset.insert({
+					["<C-p>"] = cmp.config.disable,
 					["<C-d>"] = cmp.mapping.scroll_docs(4),
 					["<C-u>"] = cmp.mapping.scroll_docs(-4),
 					["<C-e>"] = cmp.mapping.abort(),
