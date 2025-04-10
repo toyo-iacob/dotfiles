@@ -189,7 +189,7 @@ run = 'move-node-to-workspace C'
 
 # YoutubeMusic app
 [[on-window-detected]]
-if.app-id = 'com.brave.Browser.app.cinhimbnkkaeohfgghhklpknlkffjgod'
+if.app-id = ' com.brave.Browser.app.agimnkijcaahngcdmfeangaknmldooml'
 run = 'move-node-to-workspace M'
 
 [[on-window-detected]]
