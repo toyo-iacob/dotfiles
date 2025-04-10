@@ -13,8 +13,8 @@ export HISTTIMEFORMAT="%h %d %H:%M:%S "
 export HISTSIZE=10000
 export HISTFILESIZE=20000
 export HISTFILE=$HOME/.zhistory
-setopt append_history          # Save history across sessions
-setopt inc_append_history      # Write immediately instead of waiting for logout
+# setopt append_history          # Save history across sessions
+# setopt inc_append_history      # Write immediately instead of waiting for logout
 setopt share_history           # Share history between all sessions
 setopt hist_expire_dups_first  # Expire duplicate entries first
 setopt hist_ignore_dups        # Ignore duplicates in history

@@ -25,6 +25,9 @@ truncation_length = 5
 [docker_context]
 symbol = " "
 
+[kubernetes]
+symbol = "☸ "
+
 [elixir]
 symbol = " "
 
