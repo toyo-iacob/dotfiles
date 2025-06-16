@@ -123,6 +123,7 @@ alt-b = 'workspace B'
 alt-d = 'workspace D'
 alt-c = 'workspace C'
 alt-m = 'workspace M'
+alt-n = 'workspace N'
 alt-t = 'workspace T'
 alt-g = 'workspace G'
 alt-p = 'workspace P'
@@ -141,6 +142,7 @@ alt-shift-b = 'move-node-to-workspace B'
 alt-shift-d = 'move-node-to-workspace D'
 alt-shift-c = 'move-node-to-workspace C'
 alt-shift-m = 'move-node-to-workspace M'
+alt-shift-n = 'move-node-to-workspace N'
 alt-shift-t = 'move-node-to-workspace T'
 alt-shift-g = 'move-node-to-workspace G'
 alt-shift-p = 'move-node-to-workspace P'
@@ -203,12 +205,17 @@ run = 'move-node-to-workspace G'
 if.app-id = 'com.jetbrains.datagrip'
 run = 'move-node-to-workspace D'
 
+[[on-window-detected]]
+if.app-id = 'md.obsidian'
+run = 'move-node-to-workspace N'
+
 [workspace-to-monitor-force-assignment]
 C = "Built-in Retina Display"
 M = "Built-in Retina Display"
 1 = "VG270U P (2)"
 T = "VG270U P (2)"
 G = "VG270U P (2)"
+N = "VG270U P (2)"
 D = "VG270U P (2)"
 B = "VG270U P (1)"
 P = "VG270U P (1)"
