@@ -121,6 +121,13 @@ plug "MichaelAquilina/zsh-you-should-use"
 plug "zap-zsh/exa"
 plug "Aloxaf/fzf-tab"
 
+# Fix for: starship_zle-keymap-select-wrapped:1: maximum nested function level reached; increase FUNCNEST?
+if [[ "${widgets[zle-keymap-select]#user:}" == "starship_zle-keymap-select" || \
+      "${widgets[zle-keymap-select]#user:}" == "starship_zle-keymap-select-wrapped" ]]; then
+    zle -N zle-keymap-select "";
+fi
+eval "$(starship init zsh)"
+
 # Set up fzf key bindings and fuzzy completion
 source <(fzf --zsh)
 

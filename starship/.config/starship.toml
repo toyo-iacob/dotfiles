@@ -34,9 +34,16 @@ format = '[$symbol$context( \($namespace\))]($style) '
 style = "#5B9FFF"
 
 [[kubernetes.contexts]]
-context_pattern = "^production$"
-context_alias = "production"
-style = "green"
+context_pattern = "prod-eu"
+style = "red"
+
+[[kubernetes.contexts]]
+context_pattern = "prod-master"
+style = "red"
+
+[[kubernetes.contexts]]
+context_pattern = "dev-master"
+style = "yellow"
 
 [elixir]
 symbol = " "
