@@ -105,9 +105,8 @@ eval $(thefuck --alias)
 eval $(thefuck --alias fk)
 
 alias k='kubectl'
-alias kg='kubectl get pods'
-alias kga='kubectl get all'
-alias kd='kubectl describe'
+alias kctx='kubectx'
+alias kns='kubens'
 alias docker-stop-all='docker ps -q | xargs -r docker stop'
 alias docker-update='docker image ls --format "{{.Repository}}:{{.Tag}}" | grep 410715645895.dkr.ecr.us-east-1.amazonaws.com | while read line; do docker pull $line; done'
 
