@@ -71,22 +71,28 @@ return {
 					"ts_ls",
 				},
 				automatic_installation = true,
-			})
+				handlers = {
+					function(server_name)
+						require("lspconfig")[server_name].setup({})
+					end,
+					["gopls"] = function()
+						require("lspconfig").gopls.setup({
+							on_attach = function(client, bufnr)
+								local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+								buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 
-			require("lspconfig").gopls.setup({
-				on_attach = function(client, bufnr)
-					local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
-					buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
-
-					-- Auto-format and organize imports on save
-					vim.api.nvim_create_autocmd("BufWritePre", {
-						buffer = bufnr,
-						callback = function()
-							vim.lsp.buf.format({ async = false })
-							vim.lsp.buf.code_action({ context = { only = { "source.organizeImports" } }, apply = true })
-						end,
-					})
-				end,
+								-- Auto-format and organize imports on save
+								vim.api.nvim_create_autocmd("BufWritePre", {
+									buffer = bufnr,
+									callback = function()
+										vim.lsp.buf.format({ async = false })
+										vim.lsp.buf.code_action({ context = { only = { "source.organizeImports" } }, apply = true })
+									end,
+								})
+							end,
+						})
+					end,
+				},
 			})
 
 			vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename, { desc = "Rename" })
