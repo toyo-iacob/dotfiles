@@ -73,19 +73,7 @@ return {
 				automatic_installation = true,
 			})
 
-			local lspconfig = require("lspconfig")
-			local capabilities = require("cmp_nvim_lsp").default_capabilities()
-
-			require("mason-lspconfig").setup_handlers({
-				function(server_name)
-					lspconfig[server_name].setup({
-						capabilities = capabilities,
-					})
-				end,
-			})
-
-			lspconfig.gopls.setup({
-				capabilities = capabilities,
+			require("lspconfig").gopls.setup({
 				on_attach = function(client, bufnr)
 					local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
 					buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
