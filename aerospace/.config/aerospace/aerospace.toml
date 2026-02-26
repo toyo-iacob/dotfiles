@@ -206,6 +206,9 @@ run = 'move-node-to-workspace G'
 [[on-window-detected]]
 if.app-id = 'ai.perplexity.mac'
 run = 'move-node-to-workspace G'
+[[on-window-detected]]
+if.app-id = 'com.anthropic.claudefordesktop'
+run = 'move-node-to-workspace G'
 
 [[on-window-detected]]
 if.app-id = 'com.jetbrains.datagrip'
@@ -213,6 +216,9 @@ run = 'move-node-to-workspace D'
 
 [[on-window-detected]]
 if.app-id = 'md.obsidian'
+run = 'move-node-to-workspace N'
+[[on-window-detected]]
+if.app-id = 'com.granola.app'
 run = 'move-node-to-workspace N'
 
 [[on-window-detected]]
