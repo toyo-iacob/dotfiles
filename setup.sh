@@ -27,6 +27,9 @@ brew install stow
 
 brew install --cask kitty
 
+# herdr (agent multiplexing Terminal UI)
+brew install herdr
+
 #tmux
 brew install tmux
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
@@ -74,6 +77,12 @@ brew install luarocks
 for dir in */; do
   [ "$dir" != ".git/" ] && stow "$dir" -t "$HOME"
 done
+
+herdr plugin install plannotator/herdr-annotate --yes
+herdr plugin install thanhdat77/herdr-navigator --yes
+herdr plugin install paulbkim-dev/vim-herdr-navigation --yes
+herdr plugin install persiyanov/herdr-reviewr --yes
+herdr plugin install nicosuave/memex --yes
 
 #mac specific stuff
 brew install --cask nikitabobko/tap/aerospace

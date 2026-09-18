@@ -1,0 +1,3 @@
+# reviewr config (its own file; herdr's config.toml does not reach it)
+theme = "catppuccin"
+editor = "nvim +{line} {file}"
