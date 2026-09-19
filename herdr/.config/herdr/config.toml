@@ -75,7 +75,7 @@ copy_mode          = "prefix+v"        # tmux: v → copy-mode
 # --- moved defaults (conflicts with the tmux-style map above) ---
 settings           = "prefix+!"        # moved off prefix+s (split_horizontal)
 help               = "prefix+?"        # herdr default
-rename_pane        = "prefix+p"        # moved off herdr default shift+p
+rename_pane        = ""                # dropped: prefix+p now reopens the last plan in annotate
 # new_worktree: herdr default prefix+shift+g (reviewr owns prefix+g)
 open_notification_target = "prefix+n"  # jump to the pane behind the visible toast (n = notification)
 
@@ -129,7 +129,7 @@ command = "annotate.last"
 description = "annotate: review agent's last reply"
 
 [[keys.command]]
-key = "prefix+shift+p"
+key = "prefix+p"
 type = "shell"
 command = "~/.claude/hooks/reopen-plan-in-annotator.sh"
 description = "annotate: reopen latest plan (after closing its pane)"
