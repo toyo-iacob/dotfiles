@@ -1,3 +1,11 @@
 tmux/.config/tmux/plugins
 lazy-lock.json
 .kimchi/
+herdr/.config/herdr/plugins/github/
+herdr/.config/herdr/plugins/.tmp-install-*/
+herdr/.config/herdr/plugins.json
+herdr/.config/herdr/.plugins.lock
+herdr/.config/herdr/herdr-server.log
+herdr/.config/herdr/herdr-client.log
+herdr/.config/herdr/session.json
+herdr/.config/herdr/plugins/config/*/jump-back-workspace

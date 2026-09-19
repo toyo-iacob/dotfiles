@@ -48,6 +48,7 @@ stow -D nvim -t $HOME
 - **aerospace/** - macOS window manager
 - **lazygit/** - Git UI configuration
 - **gnupg/** - GPG/encryption settings
+- **claude/** - Claude Code config (`~/.claude/settings.json`, and any hand-authored skills/commands/agents)
 
 ### Neovim Configuration
 Location: `nvim/.config/nvim/`
