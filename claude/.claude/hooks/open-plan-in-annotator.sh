@@ -32,8 +32,8 @@ if [ -n "${HERDR_WORKSPACE_ID:-}" ] && [ -n "${HERDR_TAB_ID:-}" ]; then
   fi
 fi
 
-herdr plugin pane open --plugin annotate --entrypoint doc --placement split \
-  --direction right --target-pane "$HERDR_PANE_ID" --focus --cwd "$cwd" \
+herdr plugin pane open --plugin annotate --entrypoint doc --placement zoomed \
+  --target-pane "$HERDR_PANE_ID" --focus --cwd "$cwd" \
   --env "PLANNOTATOR_TUI_FILE=$plan_file" \
   --env "PLANNOTATOR_TUI_DELIVER_TO=$HERDR_PANE_ID" >/dev/null 2>&1 || true
 
