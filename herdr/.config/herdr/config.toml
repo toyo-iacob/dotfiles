@@ -128,6 +128,12 @@ type = "plugin_action"
 command = "annotate.last"
 description = "annotate: review agent's last reply"
 
+[[keys.command]]
+key = "prefix+shift+p"
+type = "shell"
+command = "~/.claude/hooks/reopen-plan-in-annotator.sh"
+description = "annotate: reopen latest plan (after closing its pane)"
+
 # herdr-navigator (fuzzy jump to workspaces/agents/sessions/dirs)
 [[keys.command]]
 key = "prefix+f"
