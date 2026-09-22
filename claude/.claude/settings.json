@@ -4,6 +4,6 @@
   "plansDirectory": ".claude/plans",
   "hooks": {
     "SessionStart": [{"matcher":"^(startup|resume|clear|compact|fork)$","hooks":[{"type":"command","command":"bash \"$HOME/.claude/hooks/herdr-agent-state.sh\" session","timeout":10}]}],
-    "PreToolUse": [{"matcher":"ExitPlanMode","hooks":[{"type":"command","command":"bash \"$HOME/.claude/hooks/open-plan-in-annotator.sh\"","timeout":10}]}]
+    "PreToolUse": [{"matcher":"ExitPlanMode","hooks":[{"type":"command","command":"bash \"$HOME/.claude/hooks/open-plan-in-annotator.sh\"","timeout":3600}]}]
   }
 }

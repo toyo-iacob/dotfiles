@@ -41,9 +41,15 @@ if [ -n "$stale_panes" ]; then
   done
 fi
 
-herdr plugin pane open --plugin annotate --entrypoint doc --placement zoomed \
+open_result="$(herdr plugin pane open --plugin annotate --entrypoint doc --placement split --direction down \
   --target-pane "$pane_id" --focus --cwd "$cwd" \
   --env "PLANNOTATOR_TUI_FILE=$plan_file" \
-  --env "PLANNOTATOR_TUI_DELIVER_TO=$pane_id" >/dev/null 2>&1 || true
+  --env "PLANNOTATOR_TUI_DELIVER_TO=$pane_id" 2>/dev/null || true)"
+
+annotate_pane_id="$(printf '%s' "$open_result" | jq -r '.result.plugin_pane.pane.pane_id // empty' 2>/dev/null || true)"
+if [ -n "$annotate_pane_id" ]; then
+  herdr pane swap --pane "$annotate_pane_id" --direction up >/dev/null 2>&1 || true
+  herdr pane resize --pane "$annotate_pane_id" --direction down --amount 0.3 >/dev/null 2>&1 || true
+fi
 
 exit 0
