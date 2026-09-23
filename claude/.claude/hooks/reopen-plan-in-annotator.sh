@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
-# herdr keybinding (prefix+shift+p): reopen the latest plan for the active
+# herdr keybinding (prefix+p): reopen the latest plan for the active
 # pane's cwd in the herdr "annotate" plugin — e.g. after closing the pane
-# that open-plan-in-annotator.sh opened automatically on ExitPlanMode.
+# that opens automatically on Claude's ExitPlanMode / Kimchi's submit_plan.
+# Considers both Claude (~/.claude → .claude/plans) and Kimchi (.kimchi/plans)
+# plan dirs under the pane cwd; whichever plan file is newest wins.
 #
 # Shell key-commands run detached (no stdin, no /dev/tty): herdr provides
 # HERDR_ACTIVE_PANE_ID / HERDR_ACTIVE_WORKSPACE_ID instead of the
@@ -23,10 +25,7 @@ cwd="$(printf '%s' "$pane_info" | jq -r '.cwd // empty')"
 tab_id="$(printf '%s' "$pane_info" | jq -r '.tab_id // empty')"
 [ -n "$cwd" ] && [ -n "$tab_id" ] || exit 0
 
-plans_dir="$cwd/.claude/plans"
-[ -d "$plans_dir" ] || exit 0
-
-plan_file="$(ls -t "$plans_dir"/*.md 2>/dev/null | head -1 || true)"
+plan_file="$(ls -t "$cwd"/.claude/plans/*.md "$cwd"/.kimchi/plans/*.md 2>/dev/null | head -1 || true)"
 [ -n "$plan_file" ] || exit 0
 
 # Close any existing annotate pane for this Claude pane before reopening,
