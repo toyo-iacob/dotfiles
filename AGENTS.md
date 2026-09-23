@@ -30,7 +30,7 @@ herdr plan-annotator integration (plannotator pane is the annotation gate):
   Send — the "approve" record branch exists in both integrations but never
   fires until the TUI gains an approval gate (the browser app's `--gate`
   only). The pane is therefore an annotation/request-changes gate today;
-  the Kimchi extension additionally treats an all-👍 looks-good record (no
+  both integrations additionally treat an all-👍 looks-good record (no
   comments/deletes) as an implicit approval.
 - herdr `prefix+p` runs `claude/.claude/hooks/reopen-plan-in-annotator.sh`,
   which reopens the newest plan across BOTH agents' plan dirs.

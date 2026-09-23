@@ -14,11 +14,28 @@
 # instead of relying on either. It responds the moment a matching record
 # shows up — no need to also close the pane first.
 #
+# plannotator-tui has no Approve action (verified across 0.8.0-0.9.2) — Send
+# always emits decision:"feedback", even for a 👍. The "approve" branch below
+# is future-proofing for if/when the TUI gains one. Today, an all-looks-good
+# feedback record (no comments, no deletes) is treated as an implicit
+# approval instead — same rule as the Kimchi integration.
+#
 # If the pane is closed with no matching record (nothing sent), this hook
 # makes no decision at all and exits quietly, so Claude's native approval
 # prompt appears and the human explicitly approves there. This hook never
-# auto-approves a plan except via an explicit "approve" record.
+# auto-approves a plan except via an explicit "approve" record or an
+# all-looks-good feedback record.
 set -euo pipefail
+
+# A feedback record counts as an implicit approval only if it contains at
+# least one "Looks good:" annotation and nothing else — no regular comments,
+# no delete suggestions.
+is_pure_looks_good() {
+  printf '%s' "$1" | grep -q "Looks good:" || return 1
+  printf '%s' "$1" | grep -q "Comment on:" && return 1
+  printf '%s' "$1" | grep -qi "delete" && return 1
+  return 0
+}
 
 # Only useful inside herdr, with the annotate plugin available.
 [ -n "${HERDR_PANE_ID:-}" ] || exit 0
@@ -78,6 +95,10 @@ while true; do
       fi
       if [ "$decision" = "feedback" ]; then
         combined="$(printf '%s\n' "$new_records" | jq -s -r 'map(.feedback) | join("\n")')"
+        if [ -n "$combined" ] && is_pure_looks_good "$combined"; then
+          printf '{"hookSpecificOutput":{"hookEventName":"PreToolUse","permissionDecision":"allow"}}\n'
+          exit 0
+        fi
         reason="$(printf '%s' "$combined" | jq -Rs .)"
         printf '{"hookSpecificOutput":{"hookEventName":"PreToolUse","permissionDecision":"deny","permissionDecisionReason":%s}}\n' "$reason"
         exit 0
