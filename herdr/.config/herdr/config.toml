@@ -15,12 +15,12 @@ tab_bar_position = "top"        # matches `status-position top`
 prompt_new_tab_name = false     # tmux `c` creates a window without prompting
 confirm_close = true
 copy_on_select = true           # tmux-yank: mouse selection copies automatically
+# weather equivalent of xamut/tmux-weather — script prints one line (wttr.in)
 tab_bar_right = [
   { type = "zoom" },
+  { type = "command", command = "bash ~/.config/herdr/weather.sh", interval_seconds = 600, timeout_seconds = 5 },
   { type = "datetime", format = "%H:%M" },
 ]
-# weather equivalent of xamut/tmux-weather — point at a script printing one line:
-# { type = "command", command = "~/.config/herdr/weather.sh", interval_seconds = 600, timeout_seconds = 5 }
 
 status_indicators = "symbols"
 [session]
