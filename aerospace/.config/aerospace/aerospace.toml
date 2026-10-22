@@ -209,6 +209,9 @@ run = 'move-node-to-workspace G'
 [[on-window-detected]]
 if.app-id = 'com.anthropic.claudefordesktop'
 run = 'move-node-to-workspace G'
+[[on-window-detected]]
+if.app-id = 'dev.kimchi.desktop'
+run = 'move-node-to-workspace G'
 
 [[on-window-detected]]
 if.app-id = 'com.jetbrains.datagrip'

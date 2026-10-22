@@ -5,9 +5,9 @@ os:
   edit: 'nvim-remote'
   mergeTool: 'nvim -d'
 git:
-  paging:
-    colorArg: always
-    pager: delta --dark --paging=never --line-numbers --hyperlinks --hyperlinks-file-link-format="lazygit-edit://{path}:{line}"
+  diffRenderers:
+    - colorArg: always
+      command: delta --dark --paging=never --line-numbers --hyperlinks --hyperlinks-file-link-format="lazygit-edit://{path}:{line}"
   diffCommand: "git --no-pager diff --color=always --minimal"
 gui:
   theme:
